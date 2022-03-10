@@ -16,5 +16,8 @@
 	"bugs": {
 		"url": "https://github.com/luis815/albion_online_items_mongodb/issues"
 	},
-	"homepage": "https://github.com/luis815/albion_online_items_mongodb#readme"
+	"homepage": "https://github.com/luis815/albion_online_items_mongodb#readme",
+	"dependencies": {
+		"axios": "^0.26.1"
+	}
 }
