@@ -1,0 +1,20 @@
+{
+	"name": "albion_online_items_mongodb",
+	"version": "1.0.0",
+	"description": "Albion Online item metadata compilation with MongoDB",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/luis815/albion_online_items_mongodb.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/luis815/albion_online_items_mongodb/issues"
+	},
+	"homepage": "https://github.com/luis815/albion_online_items_mongodb#readme"
+}
