@@ -18,6 +18,7 @@
 	},
 	"homepage": "https://github.com/luis815/albion_online_items_mongodb#readme",
 	"dependencies": {
-		"axios": "^0.26.1"
+		"axios": "^0.26.1",
+		"mongoose": "^6.2.5"
 	}
 }
