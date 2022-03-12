@@ -1,0 +1,20 @@
+name: Check and build metadata on schedule
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: MongoDB
+        run: docker-compose up -d mongodb
+      - name: NodeJS Script
+        run: docker-compose up nodejs
+      - name: MongoDB mongodump
+        run: docker-compose exec -T mongodb sh -c 'mongodump --db=albion --collection=items --archive' > ./dist/db.dump
+      - name: Docker compose teardown
+        run: docker-compose down -v --rmi local
