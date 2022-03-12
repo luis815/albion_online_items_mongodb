@@ -3,9 +3,11 @@ services:
   mongodb:
     image: "mongo:4.4"
     restart: "always"
-    env_file:
-      - ".env"
     volumes:
       - "mongodb_data:/data/db/"
+  nodejs:
+    build: "."
+    volumes:
+      - "./:/home/node/"
 volumes:
   mongodb_data:
