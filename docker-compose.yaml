@@ -8,6 +8,6 @@ services:
   nodejs:
     build: "."
     volumes:
-      - "./:/home/node/"
+      - "./project-config.json:/home/node/project-config.json"
 volumes:
   mongodb_data:
