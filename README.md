@@ -44,6 +44,7 @@ volumes:
 ```
 
 ## Learning opportunity
+
 * Used JavaScript (NodeJS) as the preffered language for the project
 * Populated a MongoDB database using Mongoose ODM
 * Provided a re-usable mongoose schema
@@ -59,6 +60,13 @@ This module creates a binary MongoDB dump file with item metadata from the video
 ## Why make this?
 
 Although the metadata is already available, the current data structure makes it difficult to work with in NodeJS applications. MongoDB is used to properly provide a schema for the available data as well as a playground for potential users.
+
+## Potential use cases
+
+* Using MongoDB Atlas Full Text Search engine to search for items
+* Using the unique name to interact with [Albion Data Project](https://www.albion-online-data.com)
+* Knowing exactly what items ara available in the game and create a fan site!\
+* Just have fun with it :)
 
 ## Notes
 
