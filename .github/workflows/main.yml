@@ -9,12 +9,23 @@ jobs:
   run:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: MongoDB
         run: docker-compose up -d mongodb
       - name: NodeJS Script
         run: docker-compose up nodejs
+      - name: Check for local changes
+        run: echo "::set-output name=GIT_OUTPUT::$(git status --porcelain --untracked-files=no | wc -l)"
       - name: MongoDB mongodump
+        if: steps.main.outputs.GIT_OUTPUT != 0
         run: docker-compose exec -T mongodb sh -c 'mongodump --db=albion --collection=items --archive' > ./dist/db.dump
+      - name: Push git commit
+        if: steps.main.outputs.GIT_OUTPUT != 0
+        run: |
+          git config user.name github-actions
+          git config user.email 22754517+luis815@users.noreply.github.com
+          git add .
+          git commit -m "Automated build"
+          git push
       - name: Docker compose teardown
         run: docker-compose down -v --rmi local
