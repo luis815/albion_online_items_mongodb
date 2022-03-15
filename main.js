@@ -51,92 +51,92 @@ const main = async () => {
 		)
 	).data;
 
-	// console.log("Bulding adp-items collection");
-	// await new Promise((resolve) => setTimeout(resolve, 1000));
-	// const itemKeys = Object.keys(itemsJson.items);
-	// for (let i = 3; i < itemKeys.length; ++i) {
-	// 	let itemValue = itemsJson.items[itemKeys[i]];
-	// 	await arrayOrObjHelperUtil(itemValue, async (item) => {
-	// 		console.log(`@uniquename: ${item["@uniquename"]}`);
-	// 		await adpItemsModel.create(item);
-	// 	});
-	// }
+	console.log("Bulding adp-items collection");
+	await new Promise((resolve) => setTimeout(resolve, 1000));
+	const itemKeys = Object.keys(itemsJson.items);
+	for (let i = 3; i < itemKeys.length; ++i) {
+		let itemValue = itemsJson.items[itemKeys[i]];
+		await arrayOrObjHelperUtil(itemValue, async (item) => {
+			console.log(`@uniquename: ${item["@uniquename"]}`);
+			await adpItemsModel.create(item);
+		});
+	}
 
-	// console.log("Building adp-localization collection");
-	// await new Promise((resolve) => setTimeout(resolve, 1000));
-	// for (const entry of localizationJson.tmx.body.tu) {
-	// 	if ("tuv" in entry && "@tuid" in entry) {
-	// 		console.log(`@tuid: ${entry["@tuid"]}`);
-	// 		await adpLocalizationModel.create(entry);
-	// 	}
-	// }
+	console.log("Building adp-localization collection");
+	await new Promise((resolve) => setTimeout(resolve, 1000));
+	for (const entry of localizationJson.tmx.body.tu) {
+		if ("tuv" in entry && "@tuid" in entry) {
+			console.log(`@tuid: ${entry["@tuid"]}`);
+			await adpLocalizationModel.create(entry);
+		}
+	}
 
-	// console.log("Building item collection");
-	// await new Promise((resolve) => setTimeout(resolve, 1000));
-	// const itemDocs = await adpItemsModel.findAll();
-	// for (const item of itemDocs) {
-	// 	const uniqueName = item["@uniquename"];
-	// 	const shopCategory = item["@shopcategory"];
-	// 	const shopSubCategory = item["@shopsubcategory1"];
-	// 	const tier = Number(item["@tier"]);
-	// 	const maxQuality = Number(item["@maxqualitylevel"] || "1");
+	console.log("Building item collection");
+	await new Promise((resolve) => setTimeout(resolve, 1000));
+	const itemDocs = await adpItemsModel.findAll();
+	for (const item of itemDocs) {
+		const uniqueName = item["@uniquename"];
+		const shopCategory = item["@shopcategory"];
+		const shopSubCategory = item["@shopsubcategory1"];
+		const tier = Number(item["@tier"]);
+		const maxQuality = Number(item["@maxqualitylevel"] || "1");
 
-	// 	const localization = await adpLocalizationModel.findItemByUniqueName(
-	// 		uniqueName
-	// 	);
+		const localization = await adpLocalizationModel.findItemByUniqueName(
+			uniqueName
+		);
 
-	// 	const availableEnchantments = [];
+		const availableEnchantments = [];
 
-	// 	if ("enchantments" in item) {
-	// 		availableEnchantments.push(0);
-	// 		await arrayOrObjHelperUtil(
-	// 			item.enchantments.enchantment,
-	// 			async (enchantment) => {
-	// 				availableEnchantments.push(Number(enchantment["@enchantmentlevel"]));
-	// 			}
-	// 		);
-	// 	} else if ("@enchantmentlevel" in item) {
-	// 		availableEnchantments.push(Number(item["@enchantmentlevel"]));
-	// 	} else {
-	// 		availableEnchantments.push(0);
-	// 	}
+		if ("enchantments" in item) {
+			availableEnchantments.push(0);
+			await arrayOrObjHelperUtil(
+				item.enchantments.enchantment,
+				async (enchantment) => {
+					availableEnchantments.push(Number(enchantment["@enchantmentlevel"]));
+				}
+			);
+		} else if ("@enchantmentlevel" in item) {
+			availableEnchantments.push(Number(item["@enchantmentlevel"]));
+		} else {
+			availableEnchantments.push(0);
+		}
 
-	// 	for (const enchantment of availableEnchantments) {
-	// 		for (let quality = 1; quality <= maxQuality; ++quality) {
-	// 			console.log(`${uniqueName} / ${enchantment} / ${quality}`);
+		for (const enchantment of availableEnchantments) {
+			for (let quality = 1; quality <= maxQuality; ++quality) {
+				console.log(`${uniqueName} / ${enchantment} / ${quality}`);
 
-	// 			try {
-	// 				const itemDoc = await itemsModel.create({
-	// 					uniqueName,
-	// 					shopCategory,
-	// 					shopSubCategory,
-	// 					tier,
-	// 					enchantment,
-	// 					quality,
-	// 					availableEnchantments,
-	// 					maxQuality,
-	// 					hash: crypto
-	// 						.createHash("sha256")
-	// 						.update(uniqueName)
-	// 						.update(tier.toString())
-	// 						.update(enchantment.toString())
-	// 						.update(quality.toString())
-	// 						.digest("hex"),
-	// 					...Object.fromEntries(
-	// 						new Map(
-	// 							localization.tuv.map((obj) => [
-	// 								langCodeDictionaryJson[obj["@xml:lang"]],
-	// 								obj.seg,
-	// 							])
-	// 						)
-	// 					),
-	// 				});
-	// 			} catch (err) {
-	// 				console.error(err.message);
-	// 			}
-	// 		}
-	// 	}
-	// }
+				try {
+					const itemDoc = await itemsModel.create({
+						uniqueName,
+						shopCategory,
+						shopSubCategory,
+						tier,
+						enchantment,
+						quality,
+						availableEnchantments,
+						maxQuality,
+						hash: crypto
+							.createHash("sha256")
+							.update(uniqueName)
+							.update(tier.toString())
+							.update(enchantment.toString())
+							.update(quality.toString())
+							.digest("hex"),
+						...Object.fromEntries(
+							new Map(
+								localization.tuv.map((obj) => [
+									langCodeDictionaryJson[obj["@xml:lang"]],
+									obj.seg,
+								])
+							)
+						),
+					});
+				} catch (err) {
+					console.error(err.message);
+				}
+			}
+		}
+	}
 
 	console.log("Disconnecting from MongoDB");
 	await mongoose.disconnect();
@@ -145,7 +145,7 @@ const main = async () => {
 	fs.writeFile(
 		path.resolve(__dirname, "./project-config.json"),
 		JSON.stringify({
-			currentMetaVersion: "metaLatestCommitHash",
+			currentMetaVersion: metaLatestCommitHash,
 		}),
 		"utf-8"
 	);
