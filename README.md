@@ -76,7 +76,7 @@ Although the metadata is already available, the current data structure makes it 
 
 The mongoose item schema is located at ```./models/items.js```. Here is a preview.
 
-```json
+```js
 {
     uniqueName: {
         type: String,
