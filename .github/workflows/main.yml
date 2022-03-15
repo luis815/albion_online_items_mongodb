@@ -15,6 +15,8 @@ jobs:
           ls -l | grep project-config
           whoami
           groups
+          echo "{}" > project-config.json
+          cat project-config.json
       - name: MongoDB
         run: docker-compose up -d mongodb
       # - name: NodeJS Script
