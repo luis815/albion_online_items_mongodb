@@ -10,12 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Ownership
-        run: sudo chown -R $USER:$USER ./*
+      - name: Debug
+        run: ls -l | grep project-config
       - name: MongoDB
         run: docker-compose up -d mongodb
-      - name: NodeJS Script
-        run: docker-compose up nodejs
+      # - name: NodeJS Script
+      #   run: docker-compose up nodejs
       - name: Check for local changes
         run: echo "::set-output name=GIT_OUTPUT::$(git status --porcelain --untracked-files=no | wc -l)"
       - name: MongoDB mongodump
