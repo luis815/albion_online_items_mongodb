@@ -43,6 +43,15 @@ volumes:
   mongodb_data:
 ```
 
+## Learning opportunity
+* Used JavaScript (NodeJS) as the preffered language for the project
+* Populated a MongoDB database using Mongoose ODM
+* Provided a re-usable mongoose schema
+* Used CLI MongoDB management tools to create dump file / backup.
+* Used Docker to create a standard environment for script file.
+* Used Docker Compose file and CLI to standardize build steps.
+* Automated data generation using a cron GitHub Actions job.
+
 ## What is it?
 
 This module creates a binary MongoDB dump file with item metadata from the video game Albion Online. The raw metadata is available at [broderickhyman/ao-bin-dumps](https://github.com/broderickhyman/ao-bin-dumps). The repository automatically checks for updates at 00:00UTC using GitHub Actions.
