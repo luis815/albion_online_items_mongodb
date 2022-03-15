@@ -7,7 +7,5 @@ services:
       - "mongodb_data:/data/db/"
   nodejs:
     build: "."
-    volumes:
-      - "./project-config.json:/home/node/project-config.json"
 volumes:
   mongodb_data:
