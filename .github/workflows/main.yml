@@ -11,7 +11,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Debug
-        run: ls -l | grep project-config
+        run: |
+          ls -l | grep project-config
+          whoami
+          groups
       - name: MongoDB
         run: docker-compose up -d mongodb
       # - name: NodeJS Script
