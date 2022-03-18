@@ -45,7 +45,7 @@ volumes:
 
 ## Learning opportunity
 
-* Used JavaScript (NodeJS) as the preffered language for the project
+* Used JavaScript (NodeJS) as the prefered language for the project
 * Populated a MongoDB database using Mongoose ODM
 * Provided a re-usable mongoose schema
 * Used CLI MongoDB management tools to create dump file / backup.
